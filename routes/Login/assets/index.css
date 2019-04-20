@@ -1,0 +1,17 @@
+.loginBg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right: 0;
+  background:url('./loginBg.jpg') no-repeat;
+  background-size: cover;
+    
+}
+.loginForm{
+  width:400px;
+  margin: 150px auto;
+  border:1px solid #fff;
+  border-radius: 3%;
+  padding:20px
+}

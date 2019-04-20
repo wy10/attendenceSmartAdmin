@@ -1,6 +1,9 @@
 import React from 'react';
 import { Router, Route, hashHistory, Redirect } from 'react-router';
-import Home from './routes/Home';
+import Login from './routes/Login';
+import BgRoute from './routes/BgRoute';
+import StaffmanManage from './routes/StaffmanManage';
+import SystemManger from './routes/SystemManger';
 
 class RouteConfig extends React.Component {
 
@@ -10,11 +13,16 @@ class RouteConfig extends React.Component {
 
                 <Route>
                     <Route>
-                        <Route path="/" component={Home}/>
+                        <Route path="/" component={Login}/>
                     </Route>
-                    {/* <Route>
-                       <Route path="/details/:uniquekey" component={NewsDetails}/>
-                    </Route> */}
+                   
+                    <Route component={BgRoute}>
+                       <Route>
+                           <Route path="/BasicAttendence" component={StaffmanManage.BasicAttendence}/>
+                           <Route path="/StaffAttendenceSel" component={StaffmanManage.StaffAttendenceSel}/>
+                           <Route path="/OvertimeSetting" component={SystemManger.OvertimeSetting} />
+                       </Route>
+                    </Route>
                 </Route>    
             </Router>    
           
