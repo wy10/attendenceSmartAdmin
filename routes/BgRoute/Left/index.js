@@ -1,50 +1,23 @@
 import React, { Component } from 'react';
-import { hashHistory } from 'react-router';
-import { Menu, Icon, Switch, Layout } from 'antd';
+import { Menu, Icon, Layout,Switch } from 'antd';
+import { MENU_ARR } from './Menu';
 
 const SubMenu = Menu.SubMenu;
 const { Sider } = Layout;
-const MENU_ARR = [
-  {
-    title:'员工考勤管理',
-    icon:'mail',
-    child:[
-      {
-        link:'/BasicAttendence',
-        title:'考勤统计',
-        goRoute:()=>{
-          hashHistory.push({
-            pathname: "/BasicAttendence"   
-          });
-        }
-      },
-      {
-        link:'/StaffAttendenceSel',
-        title:'员工考勤查询',
-        goRoute:()=>{
-          hashHistory.push({
-            pathname: "/StaffAttendenceSel"   
-          });
-        }
-      }
-    ]
-  }
-];
+
 
 export default class Left extends Component {
   state = {
-    theme: 'dark',
-    current: '1',
+    current: '员工考勤管理0',
   }
 
-  changeTheme = (value) => {
+  toggleCollapsed = () => {
     this.setState({
-      theme: value ? 'dark' : 'light',
+      collapsed: !this.state.collapsed,
     });
   }
 
   handleClick = (e) => {
-    console.log('click ', e);
     this.setState({
       current: e.key,
     });
@@ -52,20 +25,13 @@ export default class Left extends Component {
 
   render() {
     return (
-      <Sider>
-        <Switch
-          checked={this.state.theme === 'dark'}
-          onChange={this.changeTheme}
-          checkedChildren="Dark"
-          unCheckedChildren="Light"
-        />
-        <br />
-        <br />
+      <Sider style={{ height: '100vh'}}>
+        <h2 style={{color:'white',textAlign:'center',marginTop:15}}><span>智能考勤管理</span></h2>
         <Menu
-          theme={this.state.theme}
+          style={{ width: 200}}
+          theme="dark"
           onClick={this.handleClick}
-          style={{ width: 200 }}
-          defaultOpenKeys={['sub1']}
+          defaultOpenKeys={['0']}
           selectedKeys={[this.state.current]}
           mode="inline"
         >
@@ -77,7 +43,7 @@ export default class Left extends Component {
                   {
                     item.child.map((itemChild,childIndex)=>{
                       return(
-                        <Menu.Item key={index+childIndex}>
+                        <Menu.Item key={item.title+childIndex}>
                           <a onClick = {itemChild.goRoute}>{itemChild.title}</a>
                         </Menu.Item>
                       

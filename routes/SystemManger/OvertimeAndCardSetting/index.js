@@ -4,7 +4,7 @@ import MyModal from './../../Components/MyModal';
 import MyForm from './../../Components/MyForm';
 import { MyAjax } from './../../utils';
 
-export default class OvertimeSetting extends Component{
+export default class OvertimeAndCardSetting extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -30,8 +30,8 @@ export default class OvertimeSetting extends Component{
     }
 
     openModal = (type) => {
+        this.refs[type].showModal();
         if(type == "overtimeSetting"){
-            this.refs[type].showModal();
             this.setState({
                 addFieldArr:[
                     {
@@ -57,7 +57,6 @@ export default class OvertimeSetting extends Component{
                 ]
             })
         }else if(type == 'cardSetting'){
-            this.refs[type].showModal();
             this.setState({
                 addFieldArr:[
                     {
@@ -110,9 +109,7 @@ export default class OvertimeSetting extends Component{
 
                 }
                 finishCB();
-            })
-
-            
+            })   
           
         }
        

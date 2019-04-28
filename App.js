@@ -13,14 +13,20 @@ class RouteConfig extends React.Component {
 
                 <Route>
                     <Route>
-                        <Route path="/" component={Login}/>
+                        <Route path="/Login" component={Login}/>
                     </Route>
                    
                     <Route component={BgRoute}>
                        <Route>
-                           <Route path="/BasicAttendence" component={StaffmanManage.BasicAttendence}/>
+                           <Route path="/StaffCardDetailSel" component={StaffmanManage.StaffCardDetailSel}/>
                            <Route path="/StaffAttendenceSel" component={StaffmanManage.StaffAttendenceSel}/>
-                           <Route path="/OvertimeSetting" component={SystemManger.OvertimeSetting} />
+                           <Route path="/AbsenceOrLeaceSel" component={StaffmanManage.AbsenceOrLeaceSel}/>
+                           <Route path="/BasicAttendence" component={StaffmanManage.BasicAttendence}/>
+                           <Route path="/UnSettingStaff" component={StaffmanManage.UnSettingStaff}/>
+                           
+                           <Route path="/OvertimeAndCardSetting" component={SystemManger.OvertimeAndCardSetting} />
+                           <Route path="/Staffman" component={SystemManger.Staffman} />
+                           <Route path="/WorkDept" component={SystemManger.WorkDept} />
                        </Route>
                     </Route>
                 </Route>    

@@ -10,7 +10,12 @@ export default class Right extends Component{
     render(){
         return(
             <Content>
-                {this.props.children}
+                <div style={{padding:20,background:'#fff',marginBottom:8}}>
+                    123
+                </div>
+                <div style={{paddingLeft:10}}>
+                    {this.props.children}
+                </div>
             </Content>
         )
     }

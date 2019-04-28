@@ -94,7 +94,7 @@ class MyForm extends React.Component{
         },
       } : null;
 
-    const btnsStyle =  this.props.layout === 'inline' ? { marginBottom:20 } : itemLayOut ? { marginTop:20, textAlign:'center'} : { marginTop:20, textAlign:'right' };
+    const btnsStyle =  this.props.layout === 'inline' ? { marginBottom:10 } : itemLayOut ? { marginTop:10, textAlign:'center'} : { marginTop:10, textAlign:'right' };
 
     // fieldArr.map((item)=> {
 
@@ -120,7 +120,7 @@ class MyForm extends React.Component{
               case 'select':
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [
                         { required: !item.notNeed, message: `${item.label}不能为空` },
@@ -141,7 +141,7 @@ class MyForm extends React.Component{
               case 'rangePicker':
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [{ required: !item.notNeed, message: `${item.label}不能为空` }],
                       initialValue: item.defaultValue
@@ -154,7 +154,7 @@ class MyForm extends React.Component{
                 case 'timePicker':
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [{ required: !item.notNeed, message: `${item.label}不能为空` }],
                       initialValue: item.defaultValue
@@ -167,7 +167,7 @@ class MyForm extends React.Component{
               case 'monthPicker':
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [{ required: !item.notNeed, message: `${item.label}不能为空` }],
                       initialValue: item.defaultValue
@@ -182,7 +182,7 @@ class MyForm extends React.Component{
                 // noBefore 不能选择今天及以前的时间 canChooseTime 禁止选用展期之前的时间
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [{ required: !item.notNeed, message: `${item.label}不能为空` }],
                       initialValue: item.defaultValue
@@ -209,7 +209,7 @@ class MyForm extends React.Component{
               case 'msgCode':
 
                 return (
-                  <FormItem label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [
                         { required: !item.notNeed, message: `${item.label}不能为空` },
@@ -219,7 +219,7 @@ class MyForm extends React.Component{
                     })(
                       <div>
                         <Input
-                          style={{width:'120px',height:'32px',verticalAlign: 'top'}}
+                          style={{width:'110px',height:'32px',verticalAlign: 'top'}}
                           placeholder={`请输入${item.label}`}
                           type={'text'}
                          
@@ -236,7 +236,7 @@ class MyForm extends React.Component{
               case 'textArea':
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [
                         { required: !item.notNeed, message: `${item.label}不能为空` },
@@ -255,7 +255,7 @@ class MyForm extends React.Component{
               
               case 'checkbox':
                 return (
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [
                         { required: !item.notNeed, message: `必须要验证项` },
@@ -275,7 +275,7 @@ class MyForm extends React.Component{
                 }
 
                 return (
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [
                         { required: !item.notNeed, message: `必须要验证项` },
@@ -322,7 +322,7 @@ class MyForm extends React.Component{
                 }
 
                 return(
-                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 20 }}>
+                  <FormItem {...formItemLayout} label={item.label} key={item.field} style={{ marginBottom: 10 }}>
                     {getFieldDecorator(item.field, {
                       rules: [
                         { required: !item.notNeed, message: `${item.label}不能为空` },

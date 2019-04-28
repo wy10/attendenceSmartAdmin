@@ -30,7 +30,7 @@ export default class Login extends Component {
                 },(data)=>{
                     if(data.result != '{}' || data.result.length !== 0 ){
                         hashHistory.push({
-                            pathname: "/details"
+                            pathname: "/BasicAttendence"
                             
                         });
                     }

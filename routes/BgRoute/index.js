@@ -13,9 +13,9 @@ export default class BgRoute extends Component{
         const { children } = this.props;
 
         return(
-            <Layout>
+            <Layout style={{ height: '100vh',background:'#F5F5F5' }}>
                 <Left></Left>
-                <Right children={children}/>
+                <Right children={children} />
             </Layout>
         )
     }

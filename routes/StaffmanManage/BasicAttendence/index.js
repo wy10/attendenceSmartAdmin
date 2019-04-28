@@ -44,39 +44,54 @@ export default class BasicAttendence extends Component{
 
     render(){
 
-        const columns = [{
-            title: '工号',
-            dataIndex: 'staffId',
-            key: 'staffId',
-          }, {
+        const columns = [ {
             title: '姓名',
             dataIndex: 'staffName',
             key: 'staffName',
           }, {
-            title: '迟到',
+            title: '工号',
+            dataIndex: 'staffId',
+            key: 'staffId',
+          },{
+            title: '迟到次数',
             dataIndex: 'lateCount',
             key: 'lateCount',
+            render:(text) => text?text:'0'
         },{
-            title: '早退',
-            dataIndex: 'earlierCount',
-            key: 'earlierCount',
+          title: '迟到时长',
+          dataIndex: 'lateTimeCount',
+          key: 'lateTimeCount',
+          render:(text)=>text?(text/60).toFixed(2):'0'
+         },{
+            title: '早退次数',
+            dataIndex: 'earliaCount',
+            key: 'earliaCount',
+            render:(text) => text?text:'0'
         },{
-            title: '请假',
-            dataIndex: 'leaveCount',
-            key: 'leaveCount',
+          title: '早退时长',
+          dataIndex: 'earliaTimeCount',
+          key: 'earliaTimeCount',
+          render:(text) => text?(text/60).toFixed(2):'0'
         },{
-            title: '缺勤',
-            dataIndex: 'absenceCount',
-            key: 'absenceCount',
+            title: '请假时长',
+            dataIndex: 'leaveTimeCount',
+            key: 'leaveTimeCount',
+            render:(text) => text?text:'0'
         },{
             title: '公司加班时长',
-            dataIndex: 'overTimeCompanyCount',
-            key: 'overTimeCompanyCount',
+            dataIndex: 'overtimeCompanyCount',
+            key: 'overtimeCompanyCount',
+            render:(text) => text?text:'0'
           },{
             title: '个人加班时长',
-            dataIndex: 'overTimePersonCount',
-            key: 'overTimePersonCount',
-            render:(text) => (text/60).toFixed(2)
+            dataIndex: 'overtimePersonCount',
+            key: 'overtimePersonCount',
+            render:(text) => text?(text/60).toFixed(2):'0'
+          },{
+            title:'缺勤次数',
+            dataIndex:'absenceCount',
+            key:'absenceCount',
+            render:(text) => text?text:'0'
           }];
 
         return(
@@ -87,7 +102,7 @@ export default class BasicAttendence extends Component{
                     layout='inline'/>
 
                 <MyTable 
-                    url="/selBasicAttendenceBystaffidDateclock"
+                    url="/selectAllchart"
                     params={this.state.params}
                     keyName="result"
                     columns={columns}
