@@ -142,7 +142,7 @@ export default class Staffman extends Component{
             MyAjax("POST","/updateStaffmanByStaffId",params,(data)=>{
                 if(data.result =='success'){
                     this.refs.updateStaffman.hideModal();
-                    message.success("加班设置成功");
+                    message.success("员工信息修改成功");
                     
                 }else{
                     message.error("服务器繁忙");

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Form, Input, Select, DatePicker, Button,Checkbox, Row,Radio,TimePicker } from 'antd';
 import { PureNumber, priceVerify, notZeroInt } from './../../utils/vertify';
 
@@ -52,6 +53,10 @@ class MyForm extends React.Component{
           //格式化moment对象
           if(item.type === 'monthPicker'){
             values[item.field] = values[item.field] ? values[item.field].format('YYYY-MM') : undefined;
+          }
+
+          if(item.type == 'timePicker'){
+            values[item.field] = values[item.field]?values[item.field].format('HH:mm:ss'):undefined;
           }
 
         })

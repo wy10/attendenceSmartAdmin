@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MyTable from '../../Components/MyTable';
 import { dateFormat } from '../../utils';
 import MyForm from '../../Components/MyForm';
+import moment from 'moment';
 
 export default class StaffAttendenceSel extends Component{
     constructor(props){
@@ -37,6 +38,7 @@ export default class StaffAttendenceSel extends Component{
                 label: '日期区间',
                 type:  'datePicker',
                 field: 'dateClock',
+                defaultValue:moment().subtract(1, 'd'),
                 notNeed: true //非必填
               }]
         }

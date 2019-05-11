@@ -4,6 +4,7 @@ import MyTable from './../../Components/MyTable';
 import { dateFormat, MyAjax, showConfirm } from './../../utils';
 import MyForm from './../../Components/MyForm';
 import MyModal from './../../Components/MyModal';
+import moment from 'moment';
 
 export default class AbsenceOrLeaceSel extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class AbsenceOrLeaceSel extends Component {
         label: '日期区间',
         type: 'datePicker',
         field: 'dateClock',
+        defaultValue:moment().subtract(1, 'd'),
         notNeed: true //非必填
       }]
     }

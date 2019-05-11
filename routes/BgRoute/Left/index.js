@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { Menu, Icon, Layout,Switch } from 'antd';
 import { MENU_ARR } from './Menu';
+import { hashHistory } from 'react-router';
 
 const SubMenu = Menu.SubMenu;
 const { Sider } = Layout;
 
 
 export default class Left extends Component {
+ 
   state = {
-    current: '员工考勤管理0',
+    current:'/UnSettingStaff'
+  }
+
+  //解决浏览器前进后退菜单高亮显示
+  componentDidMount() {
+    this.handlePop()
+    window.addEventListener("popstate", this.handlePop)
+  }
+  componentWillUnmount() {
+    window.removeEventListener("popstate", this.handlePop)
   }
 
   toggleCollapsed = () => {
@@ -21,6 +32,23 @@ export default class Left extends Component {
     this.setState({
       current: e.key,
     });
+  }
+
+  handlePop =() =>{
+    let str = window.location.hash.slice(1);
+    if(str == '/login'){
+      // alert("")
+      hashHistory.push({
+        //阻止退到login
+        pathname: "/UnSettingStaff"
+        
+      });
+    }else{
+      this.setState({
+        current: window.location.hash.slice(1),
+      })
+    }
+  
   }
 
   render() {
@@ -43,7 +71,7 @@ export default class Left extends Component {
                   {
                     item.child.map((itemChild,childIndex)=>{
                       return(
-                        <Menu.Item key={item.title+childIndex}>
+                        <Menu.Item key={itemChild.link}>
                           <a onClick = {itemChild.goRoute}>{itemChild.title}</a>
                         </Menu.Item>
                       

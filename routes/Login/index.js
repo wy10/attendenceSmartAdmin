@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'antd';
+import { Button, Input, message } from 'antd';
 import { hashHistory } from 'react-router';
 import './assets/index.css';
 import { MyAjax } from './../utils/index';
@@ -24,13 +24,18 @@ export default class Login extends Component {
                 this.setState({
                     errSta: null
                 })
-                MyAjax("POST","/selectAdminByUsername",{
+                MyAjax("POST","/login",{
                     phoneNum:this.state.phoneNumSta,
                     password:this.state.passwordSta
                 },(data)=>{
-                    if(data.result != '{}' || data.result.length !== 0 ){
+                    if(data.result == 'login_error'){
+                        message.error("用户名密码不匹配")
+                        
+                    }else{
+                        window.localStorage.setItem("Authorization",data.result.token);
                         hashHistory.push({
-                            pathname: "/BasicAttendence"
+                            //成功之后进入员工打卡详细页面
+                            pathname: "/UnSettingStaff"
                             
                         });
                     }

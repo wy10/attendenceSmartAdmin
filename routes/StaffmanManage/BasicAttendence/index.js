@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MyTable from './../../Components/MyTable';
 import { timeFormat } from './../../utils';
 import MyForm from './../../Components/MyForm';
+import moment from 'moment';
 
 export default class BasicAttendence extends Component{
     constructor(props){
@@ -16,6 +17,7 @@ export default class BasicAttendence extends Component{
                 label: '日期区间',
                 type:  'rangePicker',
                 field: 'dateClock',
+                defaultValue:[moment().subtract(30, 'd'), moment()],
                 notNeed: true //非必填
               }]
         }
@@ -27,8 +29,8 @@ export default class BasicAttendence extends Component{
     searchSubmit = () => {
 
       return params => {
-        params.startTime = params['dateClock'][0]
-        params.endTime = params['dateClock'][1]
+        params.fontDate = params['dateClock'][0]
+        params.dateClock = params['dateClock'][1]
   
         params = { ...this.state.params, ...params }
   
@@ -73,11 +75,6 @@ export default class BasicAttendence extends Component{
           key: 'earliaTimeCount',
           render:(text) => text?(text/60).toFixed(2):'0'
         },{
-            title: '请假时长',
-            dataIndex: 'leaveTimeCount',
-            key: 'leaveTimeCount',
-            render:(text) => text?text:'0'
-        },{
             title: '公司加班时长',
             dataIndex: 'overtimeCompanyCount',
             key: 'overtimeCompanyCount',
@@ -87,6 +84,11 @@ export default class BasicAttendence extends Component{
             dataIndex: 'overtimePersonCount',
             key: 'overtimePersonCount',
             render:(text) => text?(text/60).toFixed(2):'0'
+          },{
+            title: '请假时长',
+            dataIndex: 'leaveTimeCount',
+            key: 'leaveTimeCount',
+            render:(text) => text?text:'0'
           },{
             title:'缺勤次数',
             dataIndex:'absenceCount',

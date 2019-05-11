@@ -33,8 +33,8 @@ export default class MyTable extends Component{
             loading:true
         })
 
-        MyAjax("POST",url,params,(data)=>{          
-            if(data.result.length !== 0 ){
+        MyAjax("POST",url,params,(data)=>{ 
+            if(data[keyName].length !== 0 ){
                this.setState({
                    loading:false,
                    pageIndex:pageIndex,

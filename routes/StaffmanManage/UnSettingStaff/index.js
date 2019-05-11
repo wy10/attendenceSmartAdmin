@@ -4,6 +4,7 @@ import MyTable from './../../Components/MyTable';
 import { dateFormat, MyAjax, showConfirm } from './../../utils';
 import MyForm from './../../Components/MyForm';
 import MyModal from './../../Components/MyModal';
+import moment from 'moment';
 
 export default class UnSettingStaff extends Component {
   constructor(props) {
@@ -15,7 +16,9 @@ export default class UnSettingStaff extends Component {
         label: '日期区间',
         type: 'datePicker',
         field: 'dateClock',
+        defaultValue:moment().subtract(1, 'd'),
         notNeed: true //非必填
+
       }]
     }
 
@@ -102,11 +105,11 @@ export default class UnSettingStaff extends Component {
           }, {
             label: '上班打卡时间',
             type: 'timePicker',
-            field: 'starttime',
+            field: 'startPersonTime',
           }, {
             label: '下班打卡时间',
             type: 'timePicker',
-            field: 'endtime',
+            field: 'endPersonTime',
           }, {
             label: '是否加班',
             field: 'isOvertime',
@@ -125,11 +128,7 @@ export default class UnSettingStaff extends Component {
   //补卡设置
   handleCard = (finishCB) => {
     return params => {
-      params.startPersonTime = params.starttime._i;
-      params.endPersonTime = params.endtime._i;
       params.workState = '2';
-      delete params.starttime;
-      delete params.endtime;
       MyAjax("POST", "/updateStaffAttCardSetting", params, (data) => {
         if (data.result == 'success') {
           this.refs.cardModal.hideModal();

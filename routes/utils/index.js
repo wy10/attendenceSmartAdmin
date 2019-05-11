@@ -1,5 +1,6 @@
 import $ from  'jquery';
 import { Modal, message } from 'antd';
+import { hashHistory } from 'react-router';
 
 const confirm = Modal.confirm;
 //ajax请求封装
@@ -12,8 +13,22 @@ export const MyAjax = (type,uri,params,callBack) => {
         url:wholeUrl,
         data:params,
         dataType:"json",
+        headers: {
+          "Authorization":window.localStorage.getItem("Authorization")
+        },
+        beforeSend: function (XMLHttpRequest) {
+          XMLHttpRequest.setRequestHeader("Authorization",window.localStorage.getItem("Authorization"));
+        },
         success:function(data){
-            callBack(data)
+            if(data.result == "login_error"){
+              //接口的登录token过期
+              hashHistory.push({
+                pathname: "/login"
+                
+              });
+            }else{
+              callBack(data)
+            }
         },
         error:function(data){
             callBack(data)
