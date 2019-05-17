@@ -3,7 +3,7 @@ import { hashHistory } from 'react-router';
 export const MENU_ARR = [
   {
     title: '未签到员工',
-    icon: 'mail',
+    icon: 'exclamation-circle',
     child: [
       {
         link: '/UnSettingStaff',
@@ -17,7 +17,7 @@ export const MENU_ARR = [
   },
   {
     title: '员工考勤管理',
-    icon: 'mail',
+    icon: 'team',
     child: [
       {
         link: '/StaffCardDetailSel',
@@ -66,7 +66,7 @@ export const MENU_ARR = [
   },
   {
     title: '系统管理与设置',
-    icon: 'mail',
+    icon: 'setting',
     child: [
       {
         link: '/Staffman',

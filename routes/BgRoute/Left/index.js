@@ -36,13 +36,13 @@ export default class Left extends Component {
 
   handlePop =() =>{
     let str = window.location.hash.slice(1);
-    if(str == '/login'){
+    if(str == '/Login'){
       // alert("")
-      hashHistory.push({
-        //阻止退到login
-        pathname: "/UnSettingStaff"
+      // hashHistory.push({
+      //   //阻止退到login
+      //   pathname: "/UnSettingStaff"
         
-      });
+      // });
     }else{
       this.setState({
         current: window.location.hash.slice(1),

@@ -4,17 +4,25 @@ import { hashHistory } from 'react-router';
 import './assets/index.css';
 import { MyAjax } from './../utils/index';
 import { mobileVerify } from './../utils/vertify';
+import store from './../Common/UIStore';
 
-
-export default class Login extends Component {
+class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             phoneNumSta: null,
             passwordSta: null,
-            errSta: null
+            errSta: null,
         }
+    }
+
+  
+    PayIncrease = () =>{
+        store.dispatch({
+            type:'add_adminInfo',
+            value:"111"
+        })
     }
 
     handleLogin = () => {
@@ -33,6 +41,13 @@ export default class Login extends Component {
                         
                     }else{
                         window.localStorage.setItem("Authorization",data.result.token);
+                        window.localStorage.setItem("admin",JSON.stringify(data.result));
+                        
+                        // store.dispatch({
+                        //     type:'add_adminInfo',
+                        //     value:data.result
+                        // })
+
                         hashHistory.push({
                             //成功之后进入员工打卡详细页面
                             pathname: "/UnSettingStaff"
@@ -56,7 +71,7 @@ export default class Login extends Component {
 
                 <div className="loginForm">
                     <h1>登录 <span style={{ color: 'red', fontSize: 16 }}>{this.state.errSta}</span></h1>
-
+                    
                     <Input
                         placeholder="请输入用户账号"
                         style={{ marginTop: 10 }}
@@ -85,3 +100,6 @@ export default class Login extends Component {
         )
     }
 }
+
+
+  export default Login

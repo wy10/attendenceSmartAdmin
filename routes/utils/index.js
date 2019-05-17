@@ -8,6 +8,7 @@ export const URL = "http://localhost:8080";
 
 export const MyAjax = (type,uri,params,callBack) => {
     let wholeUrl = URL+uri;
+    console.log(params)
     $.ajax({
         type:type,
         url:wholeUrl,
@@ -23,7 +24,7 @@ export const MyAjax = (type,uri,params,callBack) => {
             if(data.result == "login_error"){
               //接口的登录token过期
               hashHistory.push({
-                pathname: "/login"
+                pathname: "/Login"
                 
               });
             }else{

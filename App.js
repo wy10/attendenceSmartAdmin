@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { Router, Route, hashHistory, Redirect } from 'react-router';
+import { Provider, connect } from 'react-redux';
 import Login from './routes/Login';
 import BgRoute from './routes/BgRoute';
 import StaffmanManage from './routes/StaffmanManage';
 import SystemManger from './routes/SystemManger';
 import { message } from 'antd';
 import { MENU_ARR } from './routes/BgRoute/Left/Menu';
+import store from './routes/Common/UIStore';
 
 
 function onLeave() {
@@ -70,6 +72,7 @@ class RouteConfig extends React.Component {
                            <Route path="/OvertimeAndCardSetting" component={SystemManger.OvertimeAndCardSetting} onLeave={onLeave}/>
                            <Route path="/Staffman" component={SystemManger.Staffman} onLeave={onLeave}/>
                            <Route path="/WorkDept" component={SystemManger.WorkDept} onLeave={onLeave}/>
+                           <Route path="/Admin" component={SystemManger.Admin} onLeave={onLeave}/>
                        </Route>
                     </Route>
                 </Route>   
@@ -84,12 +87,30 @@ const RouteDiv = () => {
 
     return (
   
-      <div>
+      <Provider store={store}>
         <RouteConfig></RouteConfig>
-      </div>
+      </Provider>
   
     )
   
   }
   
   export default RouteDiv
+
+// const RouteConfig1 = (
+//   <Router history={hashHistory}>
+//     <Route path="/Login" component={Login}  />
+//     </Router>
+//     )
+// class App extends Component {
+//   render() {
+//     return (
+//       <div>
+//     <Provider store={store}>{RouteConfig1}</Provider>
+
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;

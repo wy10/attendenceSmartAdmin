@@ -1,6 +1,7 @@
 import createG2 from 'g2-react';
 import { Stat } from 'g2';
 
+//柱状图
 const Line = createG2(chart => {
   chart.axis('name', {
     title: null
@@ -50,10 +51,55 @@ const Pie = createG2(chart => {
   var items = geom.getData(); // 获取图形对应的数据
   geom.setSelected(items[1]); // 设置选中      
 });
+// 折线统计图
+const BrokenLine = createG2(chart => {
+  chart.tooltip({
+    crosshairs: {
+      type: 'line'
+    }
+  });
+  chart.axis('allTime', {
+    label: {
+      formatter: function formatter(val) {
+        return val + '°C';
+      }
+    }
+  });
+  chart.line().position('dateClock*allTime').color('staffId');
+  chart.point().position('dateClock*allTime').color('staffId').size(4).shape('circle').style({
+    stroke: '#fff',
+    lineWidth: 1
+  });
+
+chart.render();
+});
+
+// const BrokenLine = createG2(chart => {
+//   chart.tooltip({
+//     crosshairs: {
+//       type: 'line'
+//     }
+//   });
+//   chart.axis('temperature', {
+//     label: {
+//       formatter: function formatter(val) {
+//         return val + '°C';
+//       }
+//     }
+//   });
+//   chart.line().position('month*temperature').color('city');
+//   chart.point().position('month*temperature').color('city').size(4).shape('circle').style({
+//     stroke: '#fff',
+//     lineWidth: 1
+//   });
+
+// chart.render();
+// });
 
 export default {
   Line:Line,
-  Pie:Pie
+  Pie:Pie,
+  BrokenLine
 }
 
 
