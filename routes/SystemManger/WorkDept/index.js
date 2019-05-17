@@ -142,7 +142,11 @@ export default class workDept extends Component{
         return(
             <div>
 
-                <Button type="primary" onClick={()=>{this.openModal("addWorkDept",null)}}>新增部门</Button>
+                <Button 
+                    type="primary" 
+                    onClick={()=>{this.openModal("addWorkDept",null)}}
+                    style={{margin:15}}
+                >新增部门</Button>
 
                 <MyTable 
                     url="/selWorkdept"

@@ -69,6 +69,15 @@ export const MENU_ARR = [
     icon: 'setting',
     child: [
       {
+        link: '/Admin',
+        title: '管理员',
+        goRoute: () => {
+          hashHistory.push({
+            pathname: "/Admin"
+          });
+        }
+      },
+      {
         link: '/Staffman',
         title: '员工管理',
         goRoute: () => {

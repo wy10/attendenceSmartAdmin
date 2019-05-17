@@ -133,7 +133,7 @@ export default class Absence extends Component {
                   <Line
                     data={this.state.absenceResultThreeMonth}
                     width={450}
-                    height={250}
+                    height={280}
                     plotCfg={this.state.plotCfg}
                     ref="absencethreeChart"
                   />

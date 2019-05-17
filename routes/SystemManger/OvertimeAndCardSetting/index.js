@@ -10,6 +10,7 @@ export default class OvertimeAndCardSetting extends Component {
         this.state = {
             addFieldArr: [],
             workDeptOptions: [],
+            company: {}
         }
     }
 
@@ -24,6 +25,14 @@ export default class OvertimeAndCardSetting extends Component {
                 }
                 this.setState({
                     workDeptOptions: wholeData
+                })
+            }
+        })
+
+        MyAjax("POST", "/selCompanyTime", {}, (data) => {
+            if (data) {
+                this.setState({
+                    company: data
                 })
             }
         })
@@ -59,40 +68,40 @@ export default class OvertimeAndCardSetting extends Component {
         } else if (type == 'cardSetting') {
             this.setState({
                 addFieldArr: [
-                  {
-                    label: '员工工号',
-                    field: 'staffId',
-                  }, {
-                    label: '部门',
-                    field: 'workId',
-                    type: 'select',
-                    imode: 'multiple',
-                    options: this.state.workDeptOptions
-                  }, {
-                    label: '打卡日期',
-                    field: 'dateClock',
-                    type: 'datePicker'
-                  }, {
-                    label: '上班打卡时间',
-                    type: 'timePicker',
-                    field: 'startPersonTime',
-                  }, {
-                    label: '下班打卡时间',
-                    type: 'timePicker',
-                    field: 'endPersonTime',
-                  }, {
-                    label: '是否加班',
-                    field: 'isOvertime',
-                    type: 'radio',
-                    options: [{ label: '否', value: '0' }, { label: '是', value: '1' }],
-                    defaultValue: '0'
-                  }, {
-                    label: '加班时长',
-                    field: 'overtimeCompanyCount',
-                    defaultValue: '0'
-                  }]
-              })
-        }else{
+                    {
+                        label: '员工工号',
+                        field: 'staffId',
+                    }, {
+                        label: '部门',
+                        field: 'workId',
+                        type: 'select',
+                        imode: 'multiple',
+                        options: this.state.workDeptOptions
+                    }, {
+                        label: '打卡日期',
+                        field: 'dateClock',
+                        type: 'datePicker'
+                    }, {
+                        label: '上班打卡时间',
+                        type: 'timePicker',
+                        field: 'startPersonTime',
+                    }, {
+                        label: '下班打卡时间',
+                        type: 'timePicker',
+                        field: 'endPersonTime',
+                    }, {
+                        label: '是否加班',
+                        field: 'isOvertime',
+                        type: 'radio',
+                        options: [{ label: '否', value: '0' }, { label: '是', value: '1' }],
+                        defaultValue: '0'
+                    }, {
+                        label: '加班时长',
+                        field: 'overtimeCompanyCount',
+                        defaultValue: '0'
+                    }]
+            })
+        } else {
             this.setState({
                 addFieldArr: [
                     {
@@ -135,22 +144,22 @@ export default class OvertimeAndCardSetting extends Component {
         return params => {
             params.workState = '2';
             MyAjax("POST", "/updateStaffAttCardSetting", params, (data) => {
-              if (data.result == 'success') {
-                this.refs.cardSetting.hideModal();
-                message.success("设置成功");
-      
-              } else {
-                message.error("服务器繁忙");
-      
-              }
-              finishCB();
+                if (data.result == 'success') {
+                    this.refs.cardSetting.hideModal();
+                    message.success("设置成功");
+
+                } else {
+                    message.error("服务器繁忙");
+
+                }
+                finishCB();
             })
-          }
+        }
 
     }
-    
+
     //提交公司设置
-    handleCompany = (finishCB) =>{
+    handleCompany = (finishCB) => {
         return params => {
             MyAjax("POST", "/updateCompanyByid", params, (data) => {
                 if (data.result == 'success') {
@@ -176,30 +185,40 @@ export default class OvertimeAndCardSetting extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{margin:35}}>
                 <Row>
                     <Col
-                        xs={3}
+                        xs={6}
                         onClick={() => this.openModal("overtimeSetting")}
-                        style={{ paddingTop: 50, marginRight:10, paddingBottom: 50, background: '#4169E1', textAlign: 'center', borderRadius: '10%' }}
+                        style={{ paddingBottom:100,paddingTop:100, marginRight: 20, background: '#ADD8E6', textAlign: 'center', borderRadius: '10%' }}
                     >
                         部门加班设置
                     </Col>
                     <Col
-                        xs={3}
+                        xs={6}
                         onClick={() => this.openModal("cardSetting")}
-                        style={{ paddingTop: 50, marginRight:10, paddingBottom: 50, background: '#6495ED', textAlign: 'center', borderRadius: '10%' }}
+                        style={{ paddingTop: 100, marginRight: 20, paddingBottom: 100, background: '#87CEFA', textAlign: 'center', borderRadius: '10%' }}
                     >
                         异常 补卡/加班 设置
                     </Col>
-                    <Col
-                        xs={3}
-                        onClick={() => this.openModal("companySetting")}
-                        style={{ paddingTop: 50, marginRight:10, paddingBottom: 50, background: '#6495ED', textAlign: 'center', borderRadius: '10%' }}
-                    >
-                        公司时间设置
-                    </Col>
-                    
+                    {this.state.company.isDisable == '0' ?
+                        <Col
+                            xs={6}
+                            onClick={() => this.openModal("companySetting")}
+                            style={{ paddingTop: 100, paddingBottom: 100, background: '#B0E0E6', textAlign: 'center', borderRadius: '10%' }}
+                        >
+                            公司时间设置
+                        </Col> : <Col
+                            xs={6}
+                            style={{ paddingTop: 55,paddingBottom: 60, background: '#87CEEB', textAlign: 'center', borderRadius: '10%' }}
+                            >
+                            <p>上班时间：{this.state.company.startCompanyTime}</p>
+                            <p>下班时间：{this.state.company.endCompanyTime}</p>
+                            <p>午休时长：{this.state.company.lunchTime}</p>
+                        </Col>
+                    }
+
+
                 </Row>
 
                 <MyModal

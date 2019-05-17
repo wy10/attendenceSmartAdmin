@@ -136,16 +136,16 @@ resetStateField = () =>{
       title: '缺勤/请假',
       dataIndex: 'workState',
       key: 'workState',
-      render: (text) => text=='1' ? '缺勤' : '请假'
+      render: (text) => text=='1' ?<span style={{color:'red'}}>缺勤</span>: '请假'
     }, {
       title: '操作',
       key: 'operator',
-      render: (text, record, index) =>
+      render: (text, record, index) => record.workState == '1'?
         <Dropdown overlay={createMenu(record)}>
           <a style={{ width: 50, display: "inline-block" }}>
             <Icon type="menu-unfold" />
           </a>
-        </Dropdown>
+        </Dropdown>:'暂无'
     }];
 
     return (

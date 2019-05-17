@@ -230,7 +230,11 @@ export default class Staffman extends Component{
                     handleSubmit={this.searchSubmit} 
                     layout='inline'/>
 
-                <Button type="primary" onClick={()=>{this.openModal("addStaffman")}}>新增员工</Button>
+                <Button 
+                    type="primary" 
+                    onClick={()=>{this.openModal("addStaffman")}}
+                    style={{marginBottom:10}}
+                >新增员工</Button>
 
                 <MyTable 
                     url="/selAllStaffman"

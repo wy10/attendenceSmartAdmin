@@ -21,7 +21,7 @@ export const MyAjax = (type,uri,params,callBack) => {
           XMLHttpRequest.setRequestHeader("Authorization",window.localStorage.getItem("Authorization"));
         },
         success:function(data){
-            if(data.result == "login_error"){
+            if(data.result == "validToken"){
               //接口的登录token过期
               hashHistory.push({
                 pathname: "/Login"

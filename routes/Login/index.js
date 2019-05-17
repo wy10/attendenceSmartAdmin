@@ -37,7 +37,7 @@ class Login extends Component {
                     password:this.state.passwordSta
                 },(data)=>{
                     if(data.result == 'login_error'){
-                        message.error("用户名密码不匹配")
+                        message.error("账号密码匹配错误")
                         
                     }else{
                         window.localStorage.setItem("Authorization",data.result.token);

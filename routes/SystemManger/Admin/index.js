@@ -134,7 +134,7 @@ export default class Admin extends Component{
             title: '是否禁用',
             dataIndex: 'isDisable',
             key: 'isDisable',
-            render:(text)=> text=='0'?'否':'是'
+            render:(text)=> text=='0'?'否':<span style={{color:'red'}}>是</span>
         },{
             title: '操作',
             key: 'operator',
@@ -154,7 +154,11 @@ export default class Admin extends Component{
                     handleSubmit={this.searchSubmit} 
                     layout='inline'/>
 
-                <Button type="primary" onClick={()=>{this.openModal("addAdmin")}}>新增员工</Button>
+                <Button 
+                    type="primary" 
+                    onClick={()=>{this.openModal("addAdmin")}}
+                    style={{marginBottom:5}}
+                >新增员工</Button>
 
                 <MyTable 
                     url="/selAlladmin"

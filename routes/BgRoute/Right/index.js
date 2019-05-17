@@ -39,11 +39,7 @@ export default class Right extends Component {
     showConfirm({
       title: '退出',
       content: `确认退出该系统？`,
-      url: '/login',
-      params: {
-        phoneNum: "",
-        password: ""
-      },
+      url: '/validToken',
       type: 'POST',
 
     });
